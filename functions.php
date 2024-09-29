@@ -69,10 +69,22 @@ add_action('wp_ajax_load_more_posts', 'load_more_posts');
 add_action('wp_ajax_nopriv_load_more_posts', 'load_more_posts');
 
 /**
- * JS設定
+ * JSファイル読み込み
  */
 function enqueue_custom_scripts() {
-    wp_enqueue_script('custom-js', get_template_directory_uri() . '/js/loadPosts.js', [], '1.0', true);
-    wp_localize_script('custom-js', 'ajax_object', ['ajax_url' => admin_url('admin-ajax.php')]);
+    $ajax_params = [
+        'ajax_url' => admin_url('admin-ajax.php')
+    ];
+
+    // 無限スクロールのページテンプレートの場合、無限スクロール用で過去投稿を取得する用のJS読み込み
+    if (is_page_template('loadPostsInfScroll.php')) {
+        wp_enqueue_script('load-posts-inf-scroll-js', get_template_directory_uri() . '/js/loadPostsInfScroll.js', [], '1.0', true);
+        wp_localize_script('load-posts-inf-scroll-js', 'ajax_object', $ajax_params);
+    }
+    // それ以外の場合（通常のindex.phpなど）、ボタンで過去投稿を取得する用のJS読み込み
+    if (is_home()) {
+        wp_enqueue_script('load-posts-js', get_template_directory_uri() . '/js/loadPosts.js', [], '1.0', true);
+        wp_localize_script('load-posts-js', 'ajax_object', $ajax_params);
+    }
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');

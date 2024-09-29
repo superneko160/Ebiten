@@ -134,9 +134,8 @@ MAIN
 /*
 POST LIST
 ================================================ */
-.home .post-list,
-.archive .post-list,
-.search .post-list {
+.post-list.home,
+.post-list.infscroll {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
@@ -531,9 +530,8 @@ MEDIUM SIZE
     }
 
 /* MAIN */
-    .home .post-list,
-    .archive .post-list,
-    .search .post-list {
+    .post-list.home,
+    .post-list.infscroll {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
@@ -620,13 +618,19 @@ MEDIUM SIZE
     }
 }
 
+/* 投稿記事無限スクロール */
+.loading-indicator {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
 /*
 LARGE SIZE
 ================================================ */
 @media(min-width: 1000px) {
-    .home .post-list,
-    .archive .post-list,
-    .search .post-list {
+    .post-list.home,
+    .post-list.infscroll {
         grid-template-columns: repeat(2, 1fr);
     }
 }
