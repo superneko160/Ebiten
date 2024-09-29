@@ -8,8 +8,10 @@
                 <p>記事はありません</p>
             <?php endif; ?>
         </div>
-
-        <button id="loadPosts">もっと見る</button>
+        
+        <?php if ( have_posts() ) : ?>
+            <button id="loadPosts">もっと見る</button>
+        <?php endif; ?>
     </main>
 
 <?php get_footer(); ?>
