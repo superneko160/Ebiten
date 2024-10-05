@@ -99,17 +99,14 @@
             }
         };
 
-        
         /**
          * 初期化
          */
         const init = () => {
             createLoadingIndicator();
             window.addEventListener('scroll', handleScroll);
-            // 初期ロード時にページが十分でない場合、最初の投稿セットを読み込む
-            if (document.documentElement.scrollHeight <= document.documentElement.clientHeight) {
-                fetchPosts();
-            }
+            // 最初の投稿セットを読み込む
+            fetchPosts();
         };
 
         return { init };
