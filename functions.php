@@ -10,7 +10,7 @@ function add_files() {
     // メインのCSSファイル
     wp_enqueue_style('main-style', get_stylesheet_uri());
     // JavaScriptファイル
-    wp_enqueue_script('main-script', get_theme_file_uri().'/js/script.js', array(), '', true);
+    wp_enqueue_script('main-script', get_theme_file_uri().'/js/script.js', [], '', true);
 }
 add_action('wp_enqueue_scripts', 'add_files');
 
@@ -81,7 +81,7 @@ function enqueue_custom_scripts() {
         wp_enqueue_script('load-posts-inf-scroll-js', get_template_directory_uri() . '/js/loadPostsInfScroll.js', [], '1.0', true);
         wp_localize_script('load-posts-inf-scroll-js', 'ajax_object', $ajax_params);
     }
-    // それ以外の場合（通常のindex.phpなど）、ボタンで過去投稿を取得する用のJS読み込み
+    // ボタンで過去投稿を取得する用のJS読み込み
     if (is_home()) {
         wp_enqueue_script('load-posts-js', get_template_directory_uri() . '/js/loadPosts.js', [], '1.0', true);
         wp_localize_script('load-posts-js', 'ajax_object', $ajax_params);
